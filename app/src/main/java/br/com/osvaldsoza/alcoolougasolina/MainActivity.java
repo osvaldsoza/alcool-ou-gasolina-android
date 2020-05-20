@@ -31,18 +31,21 @@ public class MainActivity extends AppCompatActivity {
         boolean isCamposValidos = validarCampos(vlrAlcool, vlrGasolina);
 
         if(isCamposValidos){
-            Double alcool = Double.parseDouble(vlrAlcool);
-            Double gasolina = Double.parseDouble(vlrGasolina);
-
-            if(alcool / gasolina >= 0.7){
-                resultado.setText("Melhor colocar gasolina");
-            }else{
-                resultado.setText("Melhor colocar álcool");
-            }
-            edAlcool.setText("");
-            edGaslina.setText("");
+            realizarCalculo(vlrAlcool, vlrGasolina);
+            clearInputs();
         }else{
             resultado.setText("Preencha os campos!");
+        }
+    }
+
+    private void realizarCalculo(String vlrAlcool, String vlrGasolina) {
+        Double alcool = Double.parseDouble(vlrAlcool);
+        Double gasolina = Double.parseDouble(vlrGasolina);
+
+        if(alcool / gasolina >= 0.7){
+            resultado.setText("Melhor colocar gasolina");
+        }else{
+            resultado.setText("Melhor colocar álcool");
         }
     }
 
@@ -52,5 +55,10 @@ public class MainActivity extends AppCompatActivity {
             camposValidados = false;
         }
         return camposValidados;
+    }
+
+    public void clearInputs(){
+        edAlcool.setText("");
+        edGaslina.setText("");
     }
 }
